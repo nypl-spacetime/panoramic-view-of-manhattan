@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Panoramic view of Manhattan, showing Brooklyn Bridge under construction</title>
+    <meta charset="utf-8">
+    <meta name="viewport"content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      @font-face {
+        font-family: "Kievit Web";
+        src: url("http://ux-static.nypl.org.s3-website-us-east-1.amazonaws.com/ff_kievit_web/KievitWeb-Book.woff") format('woff');
+      }
+
+      body {
+        font-family: 'Kievit Web', 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+        color: rgb(230, 230, 230);
+      }
+
+      header a, header a:visited {
+        color: rgb(230, 230, 230);
+      }
+
+      h1 {
+        padding-bottom: 6px;
+      }
+
+      h2 {
+        color: rgb(200, 200, 200);
+      }
+
+      header {
+        padding: 20px;
+        text-shadow: 2px 2px black;
+        position: absolute;
+        z-index: 999;
+      }
+
+      #map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .leaflet-container {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+  	<header>
+      <h1>
+        Panoramic view of Manhattan, showing Brooklyn Bridge under construction
+      </h1>
+      <h2>
+        Joshua H. Beal, 1876 — from <a href="http://digitalcollections.nypl.org/items/bceb5a80-d567-0131-e064-58d385a7bbd0">The New York Public Library Digital Collections</a>
+      </h2>
+    </header>
+    <article>
+      <section id='map' />
+    </article>
+    <script>
+      var tileUrl = 'tiles/{z}/{x}/{y}.png';
+      var map = L.map('map', {
+        minZoom: 3,
+        maxZoom: 8,
+        zoomControl: false
+      });
+
+      map.addControl(L.control.zoom({position: 'topright'}));
+
+      L.tileLayer(tileUrl, {
+        tms: true,
+        attribution: 'NYPL Digital Collections - <a href="http://digitalcollections.nypl.org/about#use">No known US copyright restrictions; other rights restrictions may apply</a>'
+      }).addTo(map);
+
+      map.setView([-84, -80], 5);
+    </script>
+  </body>
+</html>
