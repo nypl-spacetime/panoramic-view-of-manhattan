@@ -6,7 +6,7 @@ Zoomable viewer, shows photo from [The New York Public Library Digital Collectio
 
 This repository also contains the [high-res photo](nypl-panoramic-view-of-manhattan.jpg) (35698 × 4254 pixels).
 
-[![](screenshot.png)](nypl-spacetime.github.io/panoramic-view-of-manhattan)
+[![](screenshot.png)](http://nypl-spacetime.github.io/panoramic-view-of-manhattan)
 
 ## Places
 
