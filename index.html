@@ -6,6 +6,7 @@
     <meta name="viewport"content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <style>
       * {
         margin: 0;
@@ -19,11 +20,16 @@
 
       body {
         font-family: 'Kievit Web', 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
-        color: rgb(230, 230, 230);
+        color: rgb(250, 250, 250);
+        font-size: 14px;
+      }
+
+      header {
+        max-width: calc(100% - 60px);
       }
 
       header a, header a:visited {
-        color: rgb(230, 230, 230);
+        color: rgb(250, 250, 250);
       }
 
       h1 {
@@ -31,7 +37,7 @@
       }
 
       h2 {
-        color: rgb(200, 200, 200);
+        color: rgb(250, 250, 250);
       }
 
       header {
@@ -65,21 +71,61 @@
       <section id='map' />
     </article>
     <script>
+      var geojsonStyle = {
+        radius: 5,
+        fillColor: '#0ff0ee',
+        color: '#000',
+        weight: 1,
+        fillOpacity: 0.8
+      }
       var tileUrl = 'tiles/{z}/{x}/{y}.png';
       var map = L.map('map', {
         minZoom: 3,
         maxZoom: 8,
         zoomControl: false
-      });
+      })
 
-      map.addControl(L.control.zoom({position: 'topright'}));
+      map.addControl(L.control.zoom({position: 'topright'}))
 
       L.tileLayer(tileUrl, {
         tms: true,
         attribution: 'NYPL Digital Collections - <a href="http://digitalcollections.nypl.org/about#use">No known US copyright restrictions; other rights restrictions may apply</a>'
-      }).addTo(map);
+      }).addTo(map)
 
-      map.setView([-84, -80], 5);
+      map.setView([-84, -80], 5)
+
+      map.on('click', function (event) {
+        var feature = {
+          type: 'Feature',
+          properties: {
+            name: '',
+            url: ''
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [
+              event.latlng.lng,
+              event.latlng.lat
+            ]
+          }
+        }
+
+        console.log('Add this to `places.json`:')
+        console.log(JSON.stringify(feature, null, 2))
+      })
+
+      d3.json('places.json', function (places) {
+        var geojsonLayer = new L.geoJson(places, {
+          style: geojsonStyle,
+          pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, geojsonStyle)
+          },
+          onEachFeature: function (feature, layer) {
+            var html = '<a href="' + feature.properties.url + '">' + feature.properties.name + '</a>'
+            layer.bindPopup(html)
+          }
+        }).addTo(map)
+      })
     </script>
   </body>
 </html>

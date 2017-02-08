@@ -1,0 +1,19 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "City Hall Post Office and Courthouse",
+        "url": "https://en.wikipedia.org/wiki/City_Hall_Post_Office_and_Courthouse_(New_York_City)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.74658203125,
+          -83.53996971923031
+        ]
+      }
+    }
+  ]
+}
