@@ -6,7 +6,7 @@ Zoomable viewer, shows photo from [The New York Public Library Digital Collectio
 
 This repository also contains the [high-res photo](nypl-panoramic-view-of-manhattan.jpg) (35698 × 4254 pixels).
 
-[![](screenshot.jpg)](nypl-spacetime.github.io/panoramic-view-of-manhattan)
+[![](screenshot.png)](nypl-spacetime.github.io/panoramic-view-of-manhattan)
 
 ## Places
 
@@ -16,7 +16,7 @@ To contribute to `places.json`, open your browser's inspector pane, click on the
 
 ![](contributing.png)
 
-__Note: the coordinates in `places.json` are not actual latitude, longitude coordinates, just translated pixel coordinates. They have no meaning on an actual map.
+__Note: the coordinates in `places.json` are not actual latitude, longitude coordinates, just translated pixel coordinates. They have no meaning on an actual map.__
 
 ## Camera position and field of view
 
