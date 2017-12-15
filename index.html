@@ -114,18 +114,18 @@
         console.log(JSON.stringify(feature, null, 2))
       })
 
-      d3.json('places.json', function (places) {
-        var geojsonLayer = new L.geoJson(places, {
-          style: geojsonStyle,
-          pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, geojsonStyle)
-          },
-          onEachFeature: function (feature, layer) {
-            var html = '<a href="' + feature.properties.url + '">' + feature.properties.name + '</a>'
-            layer.bindPopup(html)
-          }
-        }).addTo(map)
-      })
+      // d3.json('places.json', function (places) {
+      //  var geojsonLayer = new L.geoJson(places, {
+      //    style: geojsonStyle,
+      //    pointToLayer: function (feature, latlng) {
+      //      return L.circleMarker(latlng, geojsonStyle)
+      //    },
+      //    onEachFeature: function (feature, layer) {
+      //      var html = '<a href="' + feature.properties.url + '">' + feature.properties.name + '</a>'
+      //      layer.bindPopup(html)
+      //    }
+      //  }).addTo(map)
+      //})
     </script>
   </body>
 </html>
